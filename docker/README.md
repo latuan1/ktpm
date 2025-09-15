@@ -1,4 +1,4 @@
-# README — Quick VNC desktop (Windows → Docker container)
+#  VNC desktop trong Docker container
 **Mục tiêu:** chạy một container Ubuntu có desktop (XFCE) và VNC, kết nối từ Windows qua SSH tunnel.
 
 ---
@@ -7,7 +7,6 @@
 - Windows với **Docker Desktop** (Linux containers).
 - **PowerShell** và **OpenSSH Client** (kiểm tra `ssh -V`).
 - **RealVNC Viewer** (hoặc VNC client khác) trên Windows.
-- (Tùy chọn) quyền admin để mở port / thay đổi cấu hình nếu cần.
 
 ---
 
