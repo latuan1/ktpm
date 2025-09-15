@@ -1,0 +1,13 @@
+services:
+  desktop:
+    build: .
+    container_name: vnc-desktop
+    ports:
+      - "2222:22"     # SSH
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    volumes:
+      - desktop-home:/home/student
+    restart: unless-stopped
+volumes:
+  desktop-home:
