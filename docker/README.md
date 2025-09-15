@@ -109,21 +109,3 @@ ssh -N -L 5901:127.0.0.1:5901 -p 2222 student@127.0.0.1
 Sau đó mở **RealVNC Viewer** → nhập `127.0.0.1:5901` → Continue → nhập mật khẩu VNC.
 
 ---
-
-## Gợi ý cấu hình docker-compose / volume
-- Nếu bạn muốn đổi tên volume `desktop-home` thành `home/tuan`, cần sửa `docker-compose.yml` ở phần `volumes:` tương ứng và đảm bảo đường dẫn / quyền phù hợp trên container.
-- Ví dụ (chú ý, `local` volume không phải là đường dẫn file hệ thống — nếu bạn muốn map tới `C:\Users\tuan`, dùng `volumes: - C:\\Users\\tuan:/home/student`).
-
----
-
-## Troubleshooting (Các lỗi thường gặp)
-- **`.Xauthority` không tồn tại**: đảm bảo `xauth` đã được cài, và file `~/.Xauthority` được tạo bởi phiên X. Thử `touch ~/.Xauthority && xauth generate :0 . trusted`.
-- **VNC server khởi động nhưng không hiện desktop**: kiểm tra `~/.vnc/xstartup` có quyền thực hiện và nội dung chính xác; xem log `~/.vnc/*:1.log`.
-- **SSH tunnel không kết nối**: kiểm tra `Test-NetConnection 127.0.0.1 -Port 2222` trên Windows, và `ss -ltnp` trong container để xác nhận port 2222 được forward.
-- **Port conflict trên Windows**: chắc chắn port 5901 không bị chương trình khác chiếm.
-
----
-
-## Ghi chú thêm
-- Lưu ý về quyền thư mục và SELinux/AppArmor (nếu có) — trên Docker Desktop thông thường ít gặp.
-- Nếu muốn tự động khởi VNC khi container start, có thể thêm một systemd-like script hoặc entrypoint script (lưu ý container không chạy systemd mặc định).
